@@ -17,10 +17,12 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.example.secondhandsystem.Contants;
 import com.example.secondhandsystem.R;
 import com.example.secondhandsystem.adapter.DividerItemDecoration;
 import com.example.secondhandsystem.adapter.HomeCatgoryAdapter;
 import com.example.secondhandsystem.bean.Banner;
+import com.example.secondhandsystem.bean.HomeCampaign;
 import com.example.secondhandsystem.bean.HomeCategory;
 import com.example.secondhandsystem.http.BaseCallback;
 import com.example.secondhandsystem.http.OkHttpHelper;
@@ -137,29 +139,70 @@ public class HomeFragment extends Fragment {
 
     private void initRecyclerView(View view) {
         mrecyclerView= (RecyclerView) view.findViewById(R.id.recycleview);
+//
+//        List<HomeCategory> datas=new ArrayList<>(15);
+//
+//        HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_1_small1, R.drawable.img_1_small2);
+//        datas.add(category);
+//
+//         category = new HomeCategory("有利可图", R.drawable.img_big_4, R.drawable.img_4_small1, R.drawable.img_4_small2);
+//        datas.add(category);
+//
+//         category = new HomeCategory("品牌货", R.drawable.img_big_2, R.drawable.img_2_small1, R.drawable.img_2_small2);
+//        datas.add(category);
+//
+//         category = new HomeCategory("金融街", R.drawable.img_big_1, R.drawable.img_3_small1, R.drawable.imag_3_small2);
+//        datas.add(category);
+//
+//         category = new HomeCategory("超值购", R.drawable.img_big_0, R.drawable.img_0_small1, R.drawable.img_0_small2);
+//        datas.add(category);
+//
+//        mAdapter=new HomeCatgoryAdapter(datas);
+//        mrecyclerView.setAdapter(mAdapter);
+//        mrecyclerView.addItemDecoration(new DividerItemDecoration());
+//
+//        mrecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        List<HomeCategory> datas=new ArrayList<>(15);
+        httpHelper.get(Contants.API.CAMPAIGN_HOME, new BaseCallback<List<HomeCampaign>>() {
+            @Override
+            public void onRequestBefore(Request request) {
 
-        HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_1_small1, R.drawable.img_1_small2);
-        datas.add(category);
+            }
 
-         category = new HomeCategory("有利可图", R.drawable.img_big_4, R.drawable.img_4_small1, R.drawable.img_4_small2);
-        datas.add(category);
+            @Override
+            public void onFailure(Request request, IOException e) {
 
-         category = new HomeCategory("品牌货", R.drawable.img_big_2, R.drawable.img_2_small1, R.drawable.img_2_small2);
-        datas.add(category);
+            }
 
-         category = new HomeCategory("金融街", R.drawable.img_big_1, R.drawable.img_3_small1, R.drawable.imag_3_small2);
-        datas.add(category);
+            @Override
+            public void onResponse(Response response) {
 
-         category = new HomeCategory("超值购", R.drawable.img_big_0, R.drawable.img_0_small1, R.drawable.img_0_small2);
-        datas.add(category);
+            }
 
-        mAdapter=new HomeCatgoryAdapter(datas);
+            @Override
+            public void onSuccess(Response response, List<HomeCampaign> homeCampaigns) {
+                initData(homeCampaigns);
+            }
+
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                Toast.makeText(getContext(),"错误",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    //从服务器取出图片进行解析并加载在view上
+    private void initData(List<HomeCampaign> homeCampaigns) {
+
+        mAdapter=new HomeCatgoryAdapter(homeCampaigns,getActivity());
         mrecyclerView.setAdapter(mAdapter);
         mrecyclerView.addItemDecoration(new DividerItemDecoration());
 
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
     }
 
 

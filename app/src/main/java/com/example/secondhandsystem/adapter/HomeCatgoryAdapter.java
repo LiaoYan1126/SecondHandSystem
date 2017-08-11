@@ -1,5 +1,6 @@
 package com.example.secondhandsystem.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.secondhandsystem.R;
+import com.example.secondhandsystem.bean.HomeCampaign;
 import com.example.secondhandsystem.bean.HomeCategory;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -25,12 +28,14 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
 
     private LayoutInflater mInflater;
 
+    private Context mContext;
 
 
-    private List<HomeCategory> mDatas;
+    private List<HomeCampaign> mDatas;//将HomeCategory改成HomeCampaign
 
-    public HomeCatgoryAdapter(List<HomeCategory> datas){
+    public HomeCatgoryAdapter(List<HomeCampaign> datas, Context context){
         mDatas = datas;
+        this.mContext=context;
     }
 
 
@@ -52,11 +57,22 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
 
 
-        HomeCategory category = mDatas.get(i);
-        viewHolder.textTitle.setText(category.getName());
-        viewHolder.imageViewBig.setImageResource(category.getImgBig());
-        viewHolder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
-        viewHolder.imageViewSmallBottom.setImageResource(category.getImgSmallBottom());
+//        HomeCategory category = mDatas.get(i);
+//        viewHolder.textTitle.setText(category.getName());
+//        viewHolder.imageViewBig.setImageResource(category.getImgBig());
+//        viewHolder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
+//        viewHolder.imageViewSmallBottom.setImageResource(category.getImgSmallBottom());
+
+        HomeCampaign homeCampaign=mDatas.get(i);
+        viewHolder.textTitle.setText(homeCampaign.getTitle());
+//        viewHolder.imageViewBig.setImageResource(homeCampaign.getCpOne());
+//        viewHolder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
+//        viewHolder.imageViewSmallBottom.setImageResource(category.getImgSmallBottom());
+
+        //从网络上下载图片进行缓存 并加载在view上
+        Picasso.with(mContext).load(homeCampaign.getCpOne().getImgUrl()).into(viewHolder.imageViewBig);
+        Picasso.with(mContext).load(homeCampaign.getCpTwo().getImgUrl()).into(viewHolder.imageViewSmallTop);
+        Picasso.with(mContext).load(homeCampaign.getCpThree().getImgUrl()).into(viewHolder.imageViewSmallBottom);
 
     }
 
