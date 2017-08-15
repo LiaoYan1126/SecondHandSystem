@@ -7,5 +7,15 @@
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
 
+    <!--浅灰色-->
+    <color name="gainsboro">#dcdcdc</color>
+
+    <!--火砖色-->
+    <color name="firebrick">#b22222</color>
+    <color name="white_color_disable">#7fffffff</color>
+    <color name="red_btn_color_disable">#7fff5454</color>
+    <color name="red_btn_color_pressed">#ffd24242</color>
+    <color name="red_btn_color_normal">#ffff5454</color>
+
 
 </resources>
