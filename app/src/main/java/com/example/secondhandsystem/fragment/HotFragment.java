@@ -1,6 +1,6 @@
 package com.example.secondhandsystem.fragment;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -17,12 +18,17 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.example.secondhandsystem.Contants;
 import com.example.secondhandsystem.R;
+import com.example.secondhandsystem.adapter.BaseAdapter;
+import com.example.secondhandsystem.adapter.BaseViewHolder;
 import com.example.secondhandsystem.adapter.DividerItemDecoration;
+import com.example.secondhandsystem.adapter.HWAdapter;
 import com.example.secondhandsystem.adapter.HotWaresAdapter;
+import com.example.secondhandsystem.adapter.SimpleAdapter;
 import com.example.secondhandsystem.bean.Page;
 import com.example.secondhandsystem.bean.Wares;
 import com.example.secondhandsystem.http.OkHttpHelper;
 import com.example.secondhandsystem.http.SportsCallBack;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Response;
 
 import java.util.List;
@@ -36,7 +42,8 @@ public class HotFragment extends Fragment{
 
     private List<Wares> datas;
 
-    private HotWaresAdapter mAdapter;
+//    private HotWaresAdapter mAdapter;
+    private HWAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private MaterialRefreshLayout mRefreshLayout;
 
@@ -135,16 +142,27 @@ public class HotFragment extends Fragment{
 
         switch (state){
             case STATE_NORMAL:
-                mAdapter=new HotWaresAdapter(datas);
+               // mAdapter=new HotWaresAdapter(datas);
+
+                mAdapter=new HWAdapter(getContext(),datas);
+                mAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+                    @Override
+                    public void OnClick(View view, int position) {
+
+                    }
+                });
 
                 mRecyclerView.setAdapter(mAdapter);
 
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 mRecyclerView.addItemDecoration(new DividerItemDecoration());
-                break;
+
+
+
+                    break;
             case STATE_REFREH:
-                mAdapter.clearData();;
+                mAdapter.clearData();
                 mAdapter.addData(datas);
 
                 mRecyclerView.scrollToPosition(0);//定位到第一条
