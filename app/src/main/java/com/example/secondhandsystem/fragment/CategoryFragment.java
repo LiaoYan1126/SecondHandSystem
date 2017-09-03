@@ -171,7 +171,7 @@ public class CategoryFragment extends Fragment {
         //点击时显示商品列表
         mCategoryAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
-            public void OnClick(View view, int position) {
+            public void onItemClick(View view, int position) {
                 Category category=mCategoryAdapter.getItem(position);//首先拿到item
 
                 category_id=category.getId();//获取category_id
@@ -180,6 +180,8 @@ public class CategoryFragment extends Fragment {
 
                 requestWares(category.getId());
             }
+
+
         });
 
         mRecyclerView.setAdapter(mCategoryAdapter);

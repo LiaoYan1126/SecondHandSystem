@@ -60,4 +60,8 @@
 
     </style>
 
+    <style name="customCheckBox">
+        <item name="android:button">@drawable/selector_checkbox</item>
+    </style>
+
 </resources>

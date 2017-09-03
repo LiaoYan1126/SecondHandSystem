@@ -35,7 +35,7 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
 
     //声明一个点击事件
     public  interface OnItemClickListener {
-        void OnClick(View view, int position);
+        void onItemClick(View view, int position);
     }
 
 

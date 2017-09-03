@@ -8,7 +8,7 @@
     android:background="#fff">
 
 
-    <com.example.secondhandsystem.widget.CnToolBar
+    <com.example.secondhandsystem.widget.ToolBar
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -16,7 +16,7 @@
         app:isShowSearchView="true">
 
 
-    </com.example.secondhandsystem.widget.CnToolBar>
+    </com.example.secondhandsystem.widget.ToolBar>
 
 
 

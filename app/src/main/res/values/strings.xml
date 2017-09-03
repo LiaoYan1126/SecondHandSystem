@@ -6,4 +6,8 @@
     <string name="catagory">分类</string>
     <string name="cart">购物车</string>
     <string name="mine">我的</string>
+    <string name="checked_all">全选</string>
+    <string name="total">合计</string>
+    <string name="order">去结算</string>
+    <string name="del">删除</string>
 </resources>

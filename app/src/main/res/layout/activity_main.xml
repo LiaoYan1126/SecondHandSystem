@@ -6,13 +6,14 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <com.example.secondhandsystem.widget.CnToolBar
+    <com.example.secondhandsystem.widget.ToolBar
+        android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:isShowSearchView="true">
-    </com.example.secondhandsystem.widget.CnToolBar>
+    </com.example.secondhandsystem.widget.ToolBar>
 
 
     <FrameLayout

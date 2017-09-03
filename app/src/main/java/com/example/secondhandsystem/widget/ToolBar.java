@@ -2,8 +2,6 @@ package com.example.secondhandsystem.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -11,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,24 +20,24 @@ import com.example.secondhandsystem.R;
  * Created by Administrator on 2017/8/3.
  */
 //自定义导航栏
-public class CnToolBar extends Toolbar {
+public class ToolBar extends Toolbar {
     private LayoutInflater mInflater;
 
     private View mView;
     private TextView mTextTitle;
     private EditText mSearchView;
-    private ImageButton mRightImageButton;
+    private Button mRightButton;
 
 
-    public CnToolBar(Context context) {
+    public ToolBar(Context context) {
         this(context,null);
     }
 
-    public CnToolBar(Context context, AttributeSet attrs) {
+    public ToolBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CnToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
 
@@ -51,17 +50,17 @@ public class CnToolBar extends Toolbar {
 
         if(attrs !=null) {
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
-                    R.styleable.CNToolbar, defStyleAttr, 0);
+                    R.styleable.Toolbar, defStyleAttr, 0);
 
 
-            final Drawable rightIcon = a.getDrawable(R.styleable.CNToolbar_rightButtonIcon);
+            final Drawable rightIcon = a.getDrawable(R.styleable.Toolbar_rightButtonIcon);
             if (rightIcon != null) {
                 //setNavigationIcon(navIcon);
                 setRightButtonIcon(rightIcon);
             }
 
 
-            boolean isShowSearchView = a.getBoolean(R.styleable.CNToolbar_isShowSearchView,false);
+            boolean isShowSearchView = a.getBoolean(R.styleable.Toolbar_isShowSearchView,false);
 
             if(isShowSearchView){
 
@@ -87,7 +86,7 @@ public class CnToolBar extends Toolbar {
 
             mTextTitle = (TextView) mView.findViewById(R.id.toolbar_title);
             mSearchView = (EditText) mView.findViewById(R.id.toolbar_searchview);
-            mRightImageButton = (ImageButton) mView.findViewById(R.id.toolbar_rightButton);
+            mRightButton = (Button) mView.findViewById(R.id.toolbar_rightButton);
 
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
@@ -102,10 +101,10 @@ public class CnToolBar extends Toolbar {
 
     public void  setRightButtonIcon(Drawable icon){
 
-        if(mRightImageButton !=null){
+        if(mRightButton !=null){
 
-            mRightImageButton.setImageDrawable(icon);
-            mRightImageButton.setVisibility(VISIBLE);
+            mRightButton.setBackground(icon);
+            mRightButton.setVisibility(VISIBLE);
         }
 
     }
@@ -113,10 +112,14 @@ public class CnToolBar extends Toolbar {
 
     public  void setRightButtonOnClickListener(OnClickListener li){
 
-        mRightImageButton.setOnClickListener(li);
+        mRightButton.setOnClickListener(li);
     }
 
+    //显示右侧按钮
+    public Button getRightButton(){
 
+        return this.mRightButton;
+    }
 
 
     @Override
@@ -170,12 +173,12 @@ public class CnToolBar extends Toolbar {
 
 //
 //    private void ensureRightButtonView() {
-//        if (mRightImageButton == null) {
-//            mRightImageButton = new ImageButton(getContext(), null,
+//        if (mRightButton == null) {
+//            mRightButton = new ImageButton(getContext(), null,
 //                    android.support.v7.appcompat.R.attr.toolbarNavigationButtonStyle);
 //            final LayoutParams lp = generateDefaultLayoutParams();
 //            lp.gravity = GravityCompat.START | (Gravity.VERTICAL_GRAVITY_MASK);
-//            mRightImageButton.setLayoutParams(lp);
+//            mRightButton.setLayoutParams(lp);
 //        }
 //    }
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CNToolbar">
+    <declare-styleable name="Toolbar">
         <attr name="isShowSearchView" format="boolean"/>
         <attr name="leftButtonIcon" format="reference"/>
         <attr name="rightButtonIcon" format="reference"/>
         <attr name="myTitle" format="string"/>
     </declare-styleable>
+
 
 </resources>
